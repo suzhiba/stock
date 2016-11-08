@@ -13,6 +13,7 @@ print dirName
 	company data like performance , profit and so on.
 	performance:code, the code
 ''' 
+
 df=ts.get_stock_basics()
 df.to_excel(dirName+'/data/fundamentalData/'+'basics.xlsx')
 for years in [2014,2015]:
@@ -29,7 +30,6 @@ for years in [2014,2015]:
 		df.to_excel(dirName+'/data/fundamentalData/'+'debtpaying_ability'+str(years)+'_'+str(season+1)+'.xlsx')
 		df=ts.get_cashflow_data(years,season+1)
 		df.to_excel(dirName+'/data/fundamentalData/'+'cashflow'+str(years)+'_'+str(season+1)+'.xlsx')
-
 '''
 economy data like GDP and bank rate and so on.
 '''
@@ -58,13 +58,12 @@ df.to_excel(dirName+'/data/economicData/'+'PPI.xlsx')
 
 
 '''
-this data means stock price plus loss of dividend
+this data means stock price (plus loss of dividend)
 '''
-code_right=['300417','002739']
-for i in code_right:
-	df=ts.get_h_data('300417', start='2014-01-01', end='2016-01-01')
-	df.to_excel(dirName+'/data/hisWithrights offering/'+str(i)+'.xlsx', startrow=0,startcol=0)
-	#all data use df = ts.get_stock_basics()
+df=ts.get_hist_data('600848')
+#ts.get_h_data('002337', start='2015-01-01', end='2015-03-16')  will be better but something error
+df.to_excel(dirName+'/data/hisWithrights/600848.xlsx')
+#all data use df = ts.get_stock_basics()
 
 
 '''
